@@ -12,7 +12,8 @@
     "start:watch": "pcf-scripts start watch",
     "refreshTypes": "pcf-scripts refreshTypes",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic"
   },
   "dependencies": {
     "@fluentui/react": "8.29.0",
@@ -40,6 +41,7 @@
     "@types/react-modal": "^3.16.2",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
+    "chromatic": "^9.1.0",
     "eslint": "^8.24.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
@@ -51,5 +53,7 @@
     "react": "^16.8",
     "storybook": "^7.5.3",
     "typescript": "^4.8.4"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "pcf-project@1.0.0"
 }
