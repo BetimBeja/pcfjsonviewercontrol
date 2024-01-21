@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/html';
 import type { IInputs, IOutputs } from '../jsonViewerControl/generated/ManifestTypes';
 
-import { useArgs } from '@storybook/preview-api';
+import { useArgs, useEffect } from '@storybook/preview-api';
 import { jsonViewerControl as Component } from '../jsonViewerControl/';
 import { ComponentFrameworkMockGenerator, StringPropertyMock } from '@shko.online/componentframework-mock';
 
@@ -31,10 +31,14 @@ interface StoryArgs {
 }
 
 const renderGenerator = () => {
-    let container: HTMLDivElement;
+    let container: HTMLDivElement | undefined;
     let mockGenerator: ComponentFrameworkMockGenerator<IInputs, IOutputs>;
 
     return function () {
+        useEffect(()=>()=>{
+            container = undefined;
+            mockGenerator?.control.destroy();
+        });
         const [args, ] = useArgs<StoryArgs>();
         if (!container) {
             container = document.createElement('div');
