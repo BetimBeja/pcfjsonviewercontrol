@@ -7,27 +7,27 @@ import { ComponentFrameworkMockGenerator, StringPropertyMock } from '@shko.onlin
 
 import "../jsonViewerControl/css/main.css";
 
-import { initializeIcons } from '@fluentui/react/lib/Icons';
+import { initializeIcons } from "@fluentui/react/lib/Icons";
 
 initializeIcons(/* optional base url */);
 
 export default {
-    title: "Json Viewer Control",
-    argTypes: {
-        jsonValue: {
-            name: 'JSON Value',
-            control: 'text',
-            table: {
-                category: 'Parameters',
-            },
-        },
-    }
+  title: "Json Viewer Control",
+  argTypes: {
+    jsonValue: {
+      name: "JSON Value",
+      control: "text",
+      table: {
+        category: "Parameters",
+      },
+    },
+  },
 } as Meta<StoryArgs>;
 
 interface StoryArgs {
-    isDisabled: boolean;
-    isVisible: boolean;
-    jsonValue: string;
+  isDisabled: boolean;
+  isVisible: boolean;
+  jsonValue: string;
 }
 
 const renderGenerator = () => {
@@ -50,30 +50,47 @@ const renderGenerator = () => {
                 container,
             );
 
-            mockGenerator.context.mode.isControlDisabled = args.isDisabled;
-            mockGenerator.context.mode.isVisible = args.isVisible;
-            mockGenerator.context._SetCanvasItems({
-                jsonValue: args.jsonValue
-            });
+      mockGenerator.context.mode.isControlDisabled = args.isDisabled;
+      mockGenerator.context.mode.isVisible = args.isVisible;
+      mockGenerator.context._SetCanvasItems({
+        jsonValue: args.jsonValue,
+      });
 
-            mockGenerator.ExecuteInit();
-        }
+      mockGenerator.ExecuteInit();
+    }
 
-        if (mockGenerator) {
-            mockGenerator.context.mode.isVisible = args.isVisible;
-            mockGenerator.context.mode.isControlDisabled = args.isDisabled;
-            mockGenerator.context._parameters.jsonValue._SetValue(args.jsonValue);
+    if (mockGenerator) {
+      mockGenerator.context.mode.isVisible = args.isVisible;
+      mockGenerator.context.mode.isControlDisabled = args.isDisabled;
+      mockGenerator.context._parameters.jsonValue._SetValue(args.jsonValue);
 
-            mockGenerator.ExecuteUpdateView();
-        }
+      mockGenerator.ExecuteUpdateView();
+    }
 
-        return container;
-    };
+    return container;
+  };
 };
 
 export const JsonViewerControl = {
-    render: renderGenerator(),
-    args: {       
-        jsonValue: "{\"say\":\"Hi There :)\"}",
-    },
+  render: renderGenerator(),
+  args: {
+    jsonValue: `{
+      "Title": "Example glossary",
+      "GlossDiv": {
+          "name": " Markup Language Glossary",
+          "isTrue": true,
+          "totalItems": 3,
+          "GlossEntry": {
+              "IO": "SGML",
+              "GlossTerm": "Standard Generalized Markup Language",
+              "Acronym": "SGML",
+              "Abbrev": "",
+              "GlossDef": {
+  
+              "para":"A meta-markup language, used to create markup languages such as DocBook"
+              }
+          }
+      }
+  }`,
+  },
 } as StoryObj<StoryArgs>;
